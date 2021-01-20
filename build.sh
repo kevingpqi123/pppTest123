@@ -14,5 +14,5 @@ git add .
 git commit -m "Push From Landun: update SDK"
 git push origin master
 git tag -m '${SDK_VERSION}' '${SDK_VERSION}'
-git push --tag
-pod trunk push pppTest123.podspec
+#git push --tag
+#pod trunk push pppTest123.podspec
