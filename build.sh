@@ -2,7 +2,7 @@
 MajorVersion=1
 MinorVersion=0
 FixVersion=0
-BK_CI_BUILD_NO=4
+BK_CI_BUILD_NO=10
 WORKSPACE='pwd'
 SDK_VERSION=${MajorVersion}.${MinorVersion}.${FixVersion}.${BK_CI_BUILD_NO}
 echo ${SDK_VERSION}

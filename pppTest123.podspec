@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'pppTest123'
-  s.version  = '1.0.0.4'
+  s.version  = '1.0.0.10'
   s.summary          = 'pppTest123.'
 
 # This description is used to generate tags and improve search results.
