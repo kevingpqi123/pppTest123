@@ -2,13 +2,13 @@
 MajorVersion=1
 MinorVersion=0
 FixVersion=0
-BK_CI_BUILD_NO=2
+BK_CI_BUILD_NO=3
 WORKSPACE='pwd'
 SDK_VERSION=${MajorVersion}.${MinorVersion}.${FixVersion}.${BK_CI_BUILD_NO}
 echo ${SDK_VERSION}
 
 cd ${WORKSPACE}
-sed -i "" "s/^  s.version.*/  s.version  = \'${SDK_VERSION}\'/g" pppTest123.podspec
+sed -i "" "s/^  s.version.*/  s.version  = '${SDK_VERSION}'/g" pppTest123.podspec
 
 git add .
 git commit -m "Push From Landun: update SDK"
