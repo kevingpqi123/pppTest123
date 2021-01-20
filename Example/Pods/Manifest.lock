@@ -1,0 +1,16 @@
+PODS:
+  - pppTest123 (0.1.0)
+
+DEPENDENCIES:
+  - pppTest123 (from `../`)
+
+EXTERNAL SOURCES:
+  pppTest123:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  pppTest123: 905de9a129ec1d49bddcd5f5926a2337961f334e
+
+PODFILE CHECKSUM: 14f327101019e27b191867ca8da924fa9e959737
+
+COCOAPODS: 1.10.1

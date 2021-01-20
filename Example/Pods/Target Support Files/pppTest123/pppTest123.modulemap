@@ -1,0 +1,6 @@
+framework module pppTest123 {
+  umbrella header "pppTest123-umbrella.h"
+
+  export *
+  module * { export * }
+}
