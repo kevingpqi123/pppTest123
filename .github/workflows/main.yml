@@ -41,7 +41,8 @@ jobs:
            /usr/local/bin/yasm
            /usr/local/Cellar/depsync
            /usr/local/bin/depsync
-          key: yasm-007
+           /dev/null
+          key: yasm-008
       - name: pull third-party dependencies   
        # if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
