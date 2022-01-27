@@ -39,7 +39,7 @@ jobs:
            /usr/local/bin/emscripten
            /usr/local/Cellar/yasm
            /usr/local/bin/yasm
-          key: yasm-005
+          key: yasm-006
       - name: pull third-party dependencies   
         # if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
