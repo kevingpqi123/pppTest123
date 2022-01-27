@@ -31,8 +31,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
+           /usr/local/Cellar/ninja
+           /usr/local/Cellar/node
+           /usr/local/Cellar/emscripten
            /usr/local/Cellar/yasm
-          key: yasm-003
+          key: yasm-005
       - name: pull third-party dependencies   
         # if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
