@@ -2,6 +2,6 @@
 
 which yasm
 
-brew insall yasm
+brew intsall yasm
 
 which yasm
