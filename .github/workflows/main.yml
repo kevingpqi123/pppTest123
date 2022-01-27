@@ -44,9 +44,15 @@ jobs:
            /dev/null
           key: yasm-008
       - name: pull third-party dependencies   
-       # if: steps.cache-third_party.outputs.cache-hit != 'true'
+        if: steps.cache-third_party.outputs.cache-hit == 'true'
         run: |
           brew link emscripten
+          chmod +x test.sh
+          ./test.sh
+          
+      - name: pull third-party dependencies1   
+        if: steps.cache-third_party.outputs.cache-hit != 'true'
+        run: |
           chmod +x test.sh
           ./test.sh
         
