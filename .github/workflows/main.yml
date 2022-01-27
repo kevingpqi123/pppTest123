@@ -32,6 +32,7 @@ jobs:
         with:
           path: |
            /usr/local/bin/yasm
+           /usr/local/Cellar/yasm
           key: yasm-001
       - name: pull third-party dependencies   
         # if: steps.cache-third_party.outputs.cache-hit != 'true'
