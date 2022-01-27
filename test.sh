@@ -2,6 +2,6 @@
 
 which yasm
 
-brew intsall yasm
+brew install yasm
 
 which yasm
