@@ -32,9 +32,13 @@ jobs:
         with:
           path: |
            /usr/local/Cellar/ninja
+           /usr/local/bin/ninja
            /usr/local/Cellar/node
+           /usr/local/bin/node
            /usr/local/Cellar/emscripten
+           /usr/local/bin/emscripten
            /usr/local/Cellar/yasm
+           /usr/local/bin/yasm
           key: yasm-005
       - name: pull third-party dependencies   
         # if: steps.cache-third_party.outputs.cache-hit != 'true'
