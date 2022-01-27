@@ -41,8 +41,9 @@ jobs:
            /usr/local/bin/yasm
           key: yasm-006
       - name: pull third-party dependencies   
-        # if: steps.cache-third_party.outputs.cache-hit != 'true'
+        if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
+          brew link emscripten
           chmod +x test.sh
           ./test.sh
         
