@@ -31,11 +31,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-           /usr/local/bin/yasm
-          key: yasm-002
+           /usr/local/Cellar/yasm
+          key: yasm-003
       - name: pull third-party dependencies   
         # if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
+          brew install yasm
           chmod +x test.sh
           ./test.sh
         
