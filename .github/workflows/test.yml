@@ -36,12 +36,12 @@ jobs:
           path: libpag
           key: libpag001
       - name: pull third-party dependencies1   
-        if: steps.cache-third_party.outputs.cache-hit != 'true'
+        if: steps.libpag001.outputs.cache-hit != 'true'
         run: |
           chmod +x load.sh
           ./load.sh
       - name: pull third-party dependencies2
-        if: steps.cache-third_party.outputs.cache-hit == 'true'
+        if: steps.libpag001.outputs.cache-hit == 'true'
         run: |
           chmod +x load_1.sh
           ./load_1.sh
