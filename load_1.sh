@@ -2,4 +2,4 @@
 
 git branch
 
-7z x libpag.7z 
+tar -zxvf libpag.tar.gz

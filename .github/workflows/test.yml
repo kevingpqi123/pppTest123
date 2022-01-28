@@ -33,8 +33,8 @@ jobs:
         id: libpag001
         uses: actions/cache@v2
         with:
-          path: libpag
-          key: libpag002
+          path: libpag.tar.gz
+          key: libpag003
       - name: pull third-party dependencies1   
         if: steps.libpag001.outputs.cache-hit != 'true'
         run: |
