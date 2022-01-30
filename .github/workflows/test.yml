@@ -34,14 +34,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: test
-          key: Test01
+          key: Test03
       - name: pull third-party dependencies1   
         if: steps.Test01.outputs.cache-hit != 'true'
         run: |
           chmod +x test2.sh
           ./test2.sh
       - name: pull third-party dependencies2
-        if: steps.libpag001.outputs.cache-hit == 'true'
+        if: steps.Test01.outputs.cache-hit == 'true'
         run: |
           chmod +x test2.sh
           ./test2.sh
