@@ -30,19 +30,19 @@ jobs:
           git branch  
       
       - name: libpag001
-        id: libpag001
+        id: Test01
         uses: actions/cache@v2
         with:
-          path: libpag.tar.gz
-          key: libpag003
+          path: test
+          key: Test01
       - name: pull third-party dependencies1   
-        if: steps.libpag001.outputs.cache-hit != 'true'
+        if: steps.Test01.outputs.cache-hit != 'true'
         run: |
-          chmod +x load.sh
-          ./load.sh
+          chmod +x test2.sh
+          ./test2.sh
       - name: pull third-party dependencies2
         if: steps.libpag001.outputs.cache-hit == 'true'
         run: |
-          chmod +x load_1.sh
-          ./load_1.sh
+          chmod +x test2.sh
+          ./test2.sh
         
