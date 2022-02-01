@@ -20,14 +20,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref : 'master'
-          lfs: true
-      - name: compress pppTest123 
-        run: |
-          cd ..
-          tar cvfa pppTest123.tar.zst pppTest123  
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
@@ -35,18 +30,15 @@ jobs:
           path: pppTest123.tar.zst
           key: pppTest123-${{ hashFiles('pppTest123.tar.zst') }}
           restore-keys: |
-            pppTest123-${{ hashFiles('pppTest123.tar.zst') }}
-            pppTest123-
-      # - name: compress pppTest  
-      #   if: steps.pppTest.outputs.cache-hit != 'true'
-      #   run: |
-      #     cd ..
-      #     tar cvfa pppTest.tar.zst pppTest
-      # - name: decompress pppTest.tar.zst  
-      #   if: steps.pppTest.outputs.cache-hit != 'true'
-      #   run: |
-      #     echo "------decompress pppTest.tar.zst  -----------"
-      #     tar xvf pppTest.git 
-      #     chmod +x test2.sh
-      #     ./test2.sh
+            pppTest-     
+      - name: compress pppTest
+        if: steps.pppTest.outputs.cache-hit != 'true'
+        run: |
+          echo "------compress pppTest----"
+          git clone -b master https://github.com/kevingpqi123/pppTest123.git
+          tar cvfa pppTest123.tar.zst pppTest123
+      - name: get pppTest
+        if: steps.pppTest.outputs.cache-hit == 'true'
+        run: |
+          echo "------get pppTest----" 
         
