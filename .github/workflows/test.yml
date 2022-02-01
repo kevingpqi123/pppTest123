@@ -40,7 +40,7 @@ jobs:
       - name: pull third-party dependencies1   
         if: steps.Test01.outputs.cache-hit != 'true'
         run: |
-          echo "----------found------"
+          echo "----------found-------"
       - name: pull third-party dependencies2
         if: steps.Test01.outputs.cache-hit == 'true'
         run: |
