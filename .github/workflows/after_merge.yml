@@ -25,8 +25,8 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "::set-output name=today::$(date -v-0d +"%Y%m%d")"  
-          echo "::set-output name=yesterday::$(date -v-1d +"%Y%m%d"')"  
+          echo "::set-output name=today::$(date -v-0d +'%Y%m%d')"  
+          echo "::set-output name=yesterday::$(date -v-1d +'%Y%m%d')"  
           echo "---today:${{ steps.date.outputs.today }}"
           echo "---yesterday:${{ steps.date.outputs.yesterday }}"
          
