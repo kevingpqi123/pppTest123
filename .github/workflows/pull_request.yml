@@ -1,12 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test
+name: pull_request
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -22,28 +20,30 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          lfs: true
       - name: Dump GitHub context
         id: github_context_step
-      - name: git branch 
         run: |
-          git branch
-          tar cvfa result.tar.zst result
-      - name: libpag001
-        id: Test01
-        uses: actions/cache@v2
-        with:
-          path: result.tar.zst
-          key: result-${{ hashFiles('result.tar.zst') }}
-      - name: pull third-party dependencies1   
-        if: steps.Test01.outputs.cache-hit != 'true'
-        run: |
-          echo "----------found-------"
-      - name: pull third-party dependencies2
-        if: steps.Test01.outputs.cache-hit == 'true'
-        run: |
-          chmod +x test2.sh
-          ./test2.sh
+         echo '${{ toJSON(github) }}'
+         echo '${{ github.event.pull_request.base.sha }}'
+#       - name: Get cache
+#         id: pppTest123
+#         uses: actions/cache@v2
+#         with:
+#           path: pppTest123.tar.zst
+#           key: pppTest1235-
+#           restore-keys: |
+#             pppTest1235- 
+#       - name: decompress pppTest.tar.zst
+#         if: steps.pppTest123.outputs.cache-hit == 'true'
+#         run: |
+#           echo "------decompress pppTest.tar.zst  -----------"
+#           tar xvf pppTest123.tar.zst
+#           cd pppTest123
+#           git checkout test
+#       - name: get pppTest
+#         if: steps.pppTest123.outputs.cache-hit != 'true'
+#         run: |
+#           echo "------get ppptest -----------"
+#           tar cvfa pppTest.tar.zst pppTest
+
         

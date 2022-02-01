@@ -1,14 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test
+name: after_merge
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ test ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,26 +22,30 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref : 'master'
           lfs: true
-      - name: Dump GitHub context
-        id: github_context_step
-      - name: git branch 
+      - name: compress pppTest123 
         run: |
-          git branch
-          tar cvfa result.tar.zst result
-      - name: libpag001
-        id: Test01
+          cd ..
+          tar cvfa pppTest123.tar.zst pppTest123  
+      - name: Get cache
+        id: pppTest123
         uses: actions/cache@v2
         with:
-          path: result.tar.zst
-          key: result-${{ hashFiles('result.tar.zst') }}
-      - name: pull third-party dependencies1   
-        if: steps.Test01.outputs.cache-hit != 'true'
-        run: |
-          echo "----------found-------"
-      - name: pull third-party dependencies2
-        if: steps.Test01.outputs.cache-hit == 'true'
-        run: |
-          chmod +x test2.sh
-          ./test2.sh
+          path: pppTest123.tar.zst
+          key: pppTest1-${{ hashFiles('pppTest123.tar.zst') }}
+          restore-keys: |
+            pppTest1-
+      # - name: compress pppTest  
+      #   if: steps.pppTest.outputs.cache-hit != 'true'
+      #   run: |
+      #     cd ..
+      #     tar cvfa pppTest.tar.zst pppTest
+      # - name: decompress pppTest.tar.zst  
+      #   if: steps.pppTest.outputs.cache-hit != 'true'
+      #   run: |
+      #     echo "------decompress pppTest.tar.zst  -----------"
+      #     tar xvf pppTest.git 
+      #     chmod +x test2.sh
+      #     ./test2.sh
         
