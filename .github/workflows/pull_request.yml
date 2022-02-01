@@ -41,7 +41,7 @@ jobs:
           tar xvf pppTest123.tar.zst
           cd pppTest123
           echo '------------------${{ github.head_ref }}'
-          ls
+          git fetch
           git checkout ${{ github.head_ref }}
       - name: get pppTest
         if: steps.pppTest123.outputs.cache-hit != 'true'
