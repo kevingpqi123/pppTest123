@@ -27,20 +27,21 @@ jobs:
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest123-${{ hashFiles('pppTest123.tar.zst') }}
+          key: pppTest1234-${{ hashFiles('pppTest123.tar.zst') }}
           restore-keys: |
-            pppTest-     
-      - name: compress pppTest
-        if: steps.pppTest.outputs.cache-hit != 'true'
+            pppTest1234-     
+      - name: compress pppTest123
+        if: steps.pppTest123.outputs.cache-hit != 'true'
         run: |
           echo "------compress pppTest----"
           git clone -b master https://github.com/kevingpqi123/pppTest123.git
           cd pppTest123
           CommitID=`git rev-parse HEAD`
+          echo "--------$CommitID"
           cd ..
           tar cvfa pppTest123.tar.zst pppTest123
-      - name: get pppTest
-        if: steps.pppTest.outputs.cache-hit == 'true'
+      - name: get pppTest123
+        if: steps.pppTest123.outputs.cache-hit == 'true'
         run: |
           echo "------get pppTest----" 
         
