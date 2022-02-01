@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest123-$Today
+          key: pppTest123-$Today-1
           restore-keys: |
             pppTest123-$Yesterday
             pppTest123-
