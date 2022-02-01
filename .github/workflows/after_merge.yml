@@ -20,17 +20,20 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - uses: actions/checkout@v2
+        with:
+          repository : 'master'
+          lfs: true
       - name: Get cache
         id: pppTest
         uses: actions/cache@v2
         with:
           path: pppTest.tar.zst
           key: pppTest-${{ hashFiles('pppTest.tar.zst') }}
-      - name: pull pppTest  
+      - name: compress pppTest  
         if: steps.pppTest.outputs.cache-hit != 'true'
         run: |
-          echo "------git clone-----------"
-          git clone -b master https://github.com/kevingpqi123/pppTest.git
+          cd ..
           tar cvfa pppTest.tar.zst pppTest
       - name: decompress pppTest.tar.zst  
         if: steps.pppTest.outputs.cache-hit != 'true'
