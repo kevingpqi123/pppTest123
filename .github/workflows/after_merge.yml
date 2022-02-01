@@ -23,7 +23,7 @@ jobs:
         id: github_context_step
         run: |
          echo '${{ toJSON(github) }}'
-         echo '${{ github.ref }}'
+         echo '${{ github.sha }}'
          
       - name: Get cache
         id: pppTest123
