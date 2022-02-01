@@ -24,7 +24,7 @@ jobs:
         id: github_context_step
         run: |
          echo '${{ toJSON(github) }}'
-         echo '${{ github.base.repo.sha }}'
+         echo '${{ github.event.pull_request.base.sha }}'
 #       - name: Get cache
 #         id: pppTest123
 #         uses: actions/cache@v2
