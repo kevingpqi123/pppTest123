@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ test ]
-env:
-   commitID: ""
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,18 +28,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest1234-${{ hashFiles('pppTest123.tar.zst') }}
+          key: pppTest1235-${{ github.sha }}
           restore-keys: |
-            pppTest1234-     
+            pppTest1235-     
       - name: compress pppTest123
         if: steps.pppTest123.outputs.cache-hit != 'true'
         run: |
           echo "------compress pppTest----"
           git clone -b master https://github.com/kevingpqi123/pppTest123.git
-          cd pppTest123
-          CommitID=`git rev-parse HEAD`
-          echo "--------$CommitID"
-          cd ..
           tar cvfa pppTest123.tar.zst pppTest123
       - name: get pppTest123
         if: steps.pppTest123.outputs.cache-hit == 'true'
