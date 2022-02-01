@@ -26,6 +26,33 @@ jobs:
          echo '${{ toJSON(github) }}'
          echo '${{ github.event.pull_request.base.sha }}'
          echo '${{ github.head_ref }}'
+      - name: cache third-party dependencies
+        id: cache_third_party
+        uses: actions/cache@v2
+        with:
+          path: |
+           /usr/local/Cellar/ninja
+           /usr/local/bin/ninja
+           /usr/local/Cellar/node
+           /usr/local/bin/node
+           /usr/local/Cellar/emscripten
+           /usr/local/bin/emscripten
+           /usr/local/Cellar/yasm
+           /usr/local/bin/yasm
+           /usr/local/Cellar/depsync
+           /usr/local/bin/depsync
+          key: cache_third_party
+      - name: get third-party dependencies   
+        if: steps.cache_third_party.outputs.cache-hit == 'true'
+        run: |
+          brew link emscripten
+          chmod +x test.sh
+          ./test.sh
+      - name: install third-party dependencies1   
+        if: steps.cache-third_party.outputs.cache-hit != 'true'
+        run: |
+          chmod +x test.sh
+          ./test.sh   
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
@@ -34,18 +61,21 @@ jobs:
           key: pppTest123-${{ github.event.pull_request.base.sha }}
           restore-keys: |
             pppTest123- 
-      - name: decompress pppTest.tar.zst
-        if: steps.pppTest123.outputs.cache-hit == 'true'
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "pppTest123.tar.zst"
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        # Only runs if all of the files exists
         run: |
-          echo "------decompress pppTest.tar.zst  -----------"
+          echo "file exit"
           tar xvf pppTest123.tar.zst
           cd pppTest123
-          echo '------------------${{ github.head_ref }}'
-          git fetch
-          git checkout ${{ github.head_ref }}
-      - name: get pppTest
-        if: steps.pppTest123.outputs.cache-hit != 'true'
+      - name: File not exists
+        if: steps.check_files.outputs.files_exists != 'true'
         run: |
-          echo "------get ppptest ---not found--------"
-
-        
+          echo "file not exit"
+          git clone -b master https://github.com/kevingpqi123/pppTest123.git
+      
