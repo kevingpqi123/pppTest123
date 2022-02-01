@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest-
+          key: pppTest1235-
       - name: decompress pppTest.tar.zst
         if: steps.pppTest123.outputs.cache-hit == 'true'
         run: |
@@ -38,6 +38,5 @@ jobs:
         run: |
           echo "------get ppptest -----------"
           tar cvfa pppTest.tar.zst pppTest
-          git clone -b test https://github.com/kevingpqi123/pppTest123.git
 
         
