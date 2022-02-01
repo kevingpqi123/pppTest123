@@ -26,6 +26,8 @@ jobs:
         with:
           path: pppTest123.tar.zst
           key: pppTest1235-
+          restore-keys: |
+            pppTest1235- 
       - name: decompress pppTest.tar.zst
         if: steps.pppTest123.outputs.cache-hit == 'true'
         run: |
