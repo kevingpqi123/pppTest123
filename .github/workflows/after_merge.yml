@@ -25,36 +25,30 @@ jobs:
         run: |
          echo '${{ toJSON(github) }}'
          echo '${{ github.sha }}'
-      - name: Get current date
-        id: date
-        run: |
-          Today=`date -v-0d +'%Y%m%d'`
-          Yesterday=`date -v-1d +'%Y%m%d'`
-          echo "--Today:$Today"
-          echo "--Yesterday:$Yesterday"
-         
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest123-2-$Today-2
+          key: pppTest123-${{ github.sha }}
           restore-keys: |
-            pppTest123-$Yesterday
-            pppTest123-2
-            pppTest123-
-      - name: compress pppTest123
-        if: steps.pppTest123.outputs.cache-hit != 'true'
+            pppTest123-${{ github.event.before }}
+            pppTest123-  
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "pppTest123.tar.zst"
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        # Only runs if all of the files exists
         run: |
-          echo "------compress pppTest-----"
-          ls
-          echo "------compress pppTest--2---"
+          echo "file exit"
+          tar pppTest123.tar.zst
+          cd pppTest123
+      - name: File not exists
+        if: steps.check_files.outputs.files_exists != 'true'
+        run: |
+          echo "file not exit"
           git clone -b master https://github.com/kevingpqi123/pppTest123.git
-          tar cvfa pppTest123.tar.zst pppTest123
-      - name: get pppTest123
-        if: steps.pppTest123.outputs.cache-hit == 'true'
-        run: |
-          echo "------get pppTest----" 
-          ls
-          echo "------get pppTest--1----"
-        
+          tar cvfa pppTest123.tar.zst pppTest123   
