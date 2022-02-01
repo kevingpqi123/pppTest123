@@ -25,35 +25,22 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
-      - uses: actions/checkout@v2
         with:
           lfs: true
       - name: git branch 
         run: |
           git branch
-
-      
+          tar cvfa result.tar.zst result
       - name: libpag001
         id: Test01
         uses: actions/cache@v2
         with:
-          path: test
-          key: Test03
+          path: result.tar.zst
+          key: result-${{ hashFiles('result.tar.zst') }}
       - name: pull third-party dependencies1   
         if: steps.Test01.outputs.cache-hit != 'true'
         run: |
-          chmod +x test2.sh
-          ./test2.sh
+          echo "----------found------"
       - name: pull third-party dependencies2
         if: steps.Test01.outputs.cache-hit == 'true'
         run: |

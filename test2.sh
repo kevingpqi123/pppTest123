@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-cd test
+rm -rf result
 
-ls
-
+tar xvf result.tar.zst
