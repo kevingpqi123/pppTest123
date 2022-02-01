@@ -40,7 +40,8 @@ jobs:
           path: pppTest123.tar.zst
           key: pppTest123-$Today
           restore-keys: |
-            pppTest123-$Yesterday    
+            pppTest123-$Yesterday
+            pppTest123-
       - name: compress pppTest123
         if: steps.pppTest123.outputs.cache-hit != 'true'
         run: |
