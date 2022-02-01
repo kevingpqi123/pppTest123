@@ -46,7 +46,7 @@ jobs:
       - name: compress pppTest123
         if: steps.pppTest123.outputs.cache-hit != 'true'
         run: |
-          echo "------compress pppTest----"
+          echo "------compress pppTest-----"
           git clone -b master https://github.com/kevingpqi123/pppTest123.git
           tar cvfa pppTest123.tar.zst pppTest123
       - name: get pppTest123
