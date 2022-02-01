@@ -33,9 +33,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest-${{ hashFiles('pppTest123.tar.zst') }}
+          key: pppTest123-${{ hashFiles('pppTest123.tar.zst') }}
           restore-keys: |
-            pppTest-
+            pppTest123-${{ hashFiles('pppTest123.tar.zst') }}
+            pppTest123-
       # - name: compress pppTest  
       #   if: steps.pppTest.outputs.cache-hit != 'true'
       #   run: |
