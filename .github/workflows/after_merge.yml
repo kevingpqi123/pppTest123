@@ -7,6 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
+env:
+   Today: ""
+   Yestorday: ""
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,19 +28,19 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "::set-output name=today::$(date -v-0d +'%Y%m%d')"  
-          echo "::set-output name=yesterday::$(date -v-1d +'%Y%m%d')"  
-          echo "---today:${{ steps.date.outputs.today }}"
-          echo "---yesterday:${{ steps.date.outputs.yesterday }}"
+          Today=`date -v-0d +'%Y%m%d'`
+          Yesterday=`date -v-1d +'%Y%m%d'`
+          echo "--Today:$Today"
+          echo "--Yesterday:$Yesterday"
          
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
         with:
           path: pppTest123.tar.zst
-          key: pppTest123-${{ github.sha }}
+          key: pppTest123-$Today
           restore-keys: |
-            pppTest123-     
+            pppTest123-$Yesterday    
       - name: compress pppTest123
         if: steps.pppTest123.outputs.cache-hit != 'true'
         run: |
