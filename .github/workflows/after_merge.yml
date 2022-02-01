@@ -7,9 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ test ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+env:
+   commitID: ""
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,6 +22,9 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
+      - name: CommitID
+        id: CommitID
+        run: CommitID=`git rev-parse HEAD`  
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
