@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: pull_request
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: macos-latest
+
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: |
+         echo '${{ toJSON(github) }}'
+         echo '${{ github.event.pull_request.base.sha }}'
+         echo '${{ github.head_ref }}'
+      - name: Get cache
+        id: pppTest123
+        uses: actions/cache@v2
+        with:
+          path: pppTest123.tar.zst
+          key: pppTest1235-${{ github.event.pull_request.base.sha }}
+          restore-keys: |
+            pppTest1235- 
+      - name: decompress pppTest.tar.zst
+        if: steps.pppTest123.outputs.cache-hit == 'true'
+        run: |
+          echo "------decompress pppTest.tar.zst  -----------"
+          tar xvf pppTest123.tar.zst
+          cd pppTest123
+          git checkout ${{ github.head_ref }}
+      - name: get pppTest
+        if: steps.pppTest123.outputs.cache-hit != 'true'
+        run: |
+          echo "------get ppptest -----------"
+
+        
