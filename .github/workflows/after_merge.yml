@@ -22,9 +22,6 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
-      - name: CommitID
-        id: CommitID
-        run: CommitID=`git rev-parse HEAD`  
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
@@ -38,6 +35,9 @@ jobs:
         run: |
           echo "------compress pppTest----"
           git clone -b master https://github.com/kevingpqi123/pppTest123.git
+          cd pppTest123
+          CommitID=`git rev-parse HEAD`
+          cd ..
           tar cvfa pppTest123.tar.zst pppTest123
       - name: get pppTest
         if: steps.pppTest.outputs.cache-hit == 'true'
