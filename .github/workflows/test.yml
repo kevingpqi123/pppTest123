@@ -22,11 +22,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+      - uses: actions/checkout@v2
         with:
           lfs: true
+      - name: Dump GitHub context
+        id: github_context_step
       - name: git branch 
         run: |
           git branch
