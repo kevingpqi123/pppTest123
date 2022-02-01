@@ -44,7 +44,7 @@ jobs:
         # Only runs if all of the files exists
         run: |
           echo "file exit"
-          tar pppTest123.tar.zst
+          tar xvf pppTest123.tar.zst
           cd pppTest123
       - name: File not exists
         if: steps.check_files.outputs.files_exists != 'true'
