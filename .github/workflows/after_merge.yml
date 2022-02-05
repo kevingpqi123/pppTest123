@@ -20,6 +20,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Dump GitHub context
         id: github_context_step
         run: |
