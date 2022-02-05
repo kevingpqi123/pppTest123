@@ -25,6 +25,8 @@ jobs:
         run: |
          echo '${{ toJSON(github) }}'
          echo '${{ github.sha }}'
+         chmod +x load.sh
+         ./load.sh
       - name: Get cache
         id: pppTest123
         uses: actions/cache@v2
@@ -34,21 +36,18 @@ jobs:
           restore-keys: |
             pppTest123-${{ github.event.before }}
             pppTest123-  
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "pppTest123.tar.zst"
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        # Only runs if all of the files exists
-        run: |
-          echo "file exit"
-          tar xvf pppTest123.tar.zst
-          cd pppTest123
-      - name: File not exists
-        if: steps.check_files.outputs.files_exists != 'true'
-        run: |
-          echo "file not exit"
-          git clone -b master https://github.com/kevingpqi123/pppTest123.git
-          tar cvfa pppTest123.tar.zst pppTest123   
+      # - name: judge a file or dir is exits
+      #   shell: ls pppTest123.tar.zst
+      #   ignore_errors: True
+      #   register: result
+      # - shell: |
+      #    echo "file exit"
+      #    tar pppTest123.tar.zst
+      #    cd pppTest123
+      #   when: result|succeeded 
+      # - shell: |
+      #    echo "file not exit"
+      #    git clone -b master https://github.com/kevingpqi123/pppTest123.git
+      #    tar cvfa pppTest123.tar.zst pppTest123
+      #    when: result|failed   
+        

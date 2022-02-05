@@ -2,4 +2,7 @@
 
 git branch
 
-git clone -b main https://github.com/kevingpqi123/libpag.git
+mkdir result
+cp -a libss.a result/
+echo "----test-----"
+exit 1
