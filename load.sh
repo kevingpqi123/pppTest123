@@ -5,4 +5,4 @@ git branch
 mkdir result
 cp -a libss.a result/
 echo "----test-----"
-exit 1
+exit 255
