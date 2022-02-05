@@ -30,6 +30,7 @@ jobs:
          ./load.sh
       - name: The job has failed
         if: ${{ failure() }} 
+        run: echo "failes"
       - name: Get Cache 
         id: pppTest123
         uses: actions/cache@v2
