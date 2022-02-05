@@ -29,7 +29,8 @@ jobs:
          chmod +x load.sh
          ./load.sh
       - name: The job has failed
-        if: ${{ failure() }}   
+        if: ${{ failure() }} 
+      - name: Get Cache 
         id: pppTest123
         uses: actions/cache@v2
         with:
