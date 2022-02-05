@@ -23,7 +23,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Dump GitHub context
         id: github_context_step
-        ignore_errors: True
         run: |
          echo '${{ toJSON(github) }}'
          echo '${{ github.sha }}'
@@ -38,13 +37,6 @@ jobs:
           restore-keys: |
             pppTest123-${{ github.event.before }}
             pppTest123-  
-      - name: judge a file or dir is exits
-        shell: ls pppTest123.tar.zst
-        ignore_errors: True
-        register: result
-      - shell: |
-         echo "file exit"
-        when: result|succeeded 
-      - shell: |
-         echo "file not exit" 
-        
+      - name: The job has failed
+        if: ${{ failure() }}      
+   
