@@ -25,7 +25,8 @@ jobs:
         id: github_context_step
         run: |
          echo '${{ toJSON(github) }}'
-         echo '${{ github.sha }}'
+         echo '${{ secrets.CODECOV_TOKEN }}
+         echo '----'
          chmod +x load.sh
          ./load.sh
       - name: The job has failed
