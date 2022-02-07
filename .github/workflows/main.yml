@@ -41,8 +41,9 @@ jobs:
            /usr/local/bin/yasm
            /usr/local/Cellar/depsync
            /usr/local/bin/depsync
+           /opt/homebrew/bin/gcovr
            /usr/local/Cellar/gcovr
-          key: yasm-010
+          key: yasm-011
       - name: pull third-party dependencies   
         if: steps.cache-third_party.outputs.cache-hit == 'true'
         run: |
