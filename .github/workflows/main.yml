@@ -51,7 +51,6 @@ jobs:
           chmod +x test.sh
           ./test.sh
           echo "----------"
-          wich gcovr
           gcovr -v
           
       - name: pull third-party dependencies1   
