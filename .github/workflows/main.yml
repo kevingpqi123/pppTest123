@@ -49,6 +49,7 @@ jobs:
           brew link emscripten
           chmod +x test.sh
           ./test.sh
+          wich gcovr
           gcovr -v
           
       - name: pull third-party dependencies1   
