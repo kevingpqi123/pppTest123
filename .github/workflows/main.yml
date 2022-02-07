@@ -50,6 +50,7 @@ jobs:
           brew link emscripten
           chmod +x test.sh
           ./test.sh
+          echo "----------"
           wich gcovr
           gcovr -v
           
