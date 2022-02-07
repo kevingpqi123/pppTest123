@@ -41,17 +41,20 @@ jobs:
            /usr/local/bin/yasm
            /usr/local/Cellar/depsync
            /usr/local/bin/depsync
-          key: yasm-009
+           /usr/local/Cellar/gcovr
+          key: yasm-010
       - name: pull third-party dependencies   
         if: steps.cache-third_party.outputs.cache-hit == 'true'
         run: |
           brew link emscripten
           chmod +x test.sh
           ./test.sh
+          gcovr -v
           
       - name: pull third-party dependencies1   
         if: steps.cache-third_party.outputs.cache-hit != 'true'
         run: |
           chmod +x test.sh
           ./test.sh
+          brew install gcovr
         
