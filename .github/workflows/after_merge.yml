@@ -29,6 +29,7 @@ jobs:
          Today="111"
          echo '${{ toJSON(github) }}'
          echo '${{ secrets.CODECOV_TOKEN }}'
+         echo '$Today'
       - name: The job has failed
         if: ${{ failure() }} 
         run: echo "failes"
@@ -45,7 +46,7 @@ jobs:
       - if: github.event_name == 'push'
         name: Install dependencies
         run: |
-          echo $Today
+          echo '$Today'
           echo "-----check event---push---"
       - name: Check file existence
         id: check_files
