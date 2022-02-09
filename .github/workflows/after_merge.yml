@@ -26,10 +26,11 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
-         Today="111"
+         Today=111
+         echo $Today
+         echo '${{ env.Today }}'
          echo '${{ toJSON(github) }}'
          echo '${{ secrets.CODECOV_TOKEN }}'
-         echo '$Today'
       - name: The job has failed
         if: ${{ failure() }} 
         run: echo "failes"
