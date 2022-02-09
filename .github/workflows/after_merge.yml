@@ -26,6 +26,7 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
+         Today="111"
          echo '${{ toJSON(github) }}'
          echo '${{ secrets.CODECOV_TOKEN }}'
       - name: The job has failed
@@ -44,6 +45,7 @@ jobs:
       - if: github.event_name == 'push'
         name: Install dependencies
         run: |
+          echo $Today
           echo "-----check event---push---"
       - name: Check file existence
         id: check_files
