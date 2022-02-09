@@ -43,20 +43,19 @@ jobs:
             pppTest123-${{ github.event.before }}
             pppTest123-${{ github.event.pull_request.base.sha }}
             pppTest123-
-      - name: check event
-          if: ${{ github.event_name }} == 'push'
-          # Only runs if all of the files exists
-          run: |
-            echo "-----check event---push---"
+      - if: github.event_name == 'push'
+        name: Install dependencies
+        run: |
+          echo "-----check event---push---"
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
           files: "libpag.tar.zst"
       - name: File exists
-          if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.files_exists == 'true'
           # Only runs if all of the files exists
-          run: |
+        run: |
             echo "file exit"
             tar xvf ppptest123.tar.zst
             rm -rf ppptest123.tar.zst
