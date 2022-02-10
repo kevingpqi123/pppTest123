@@ -26,6 +26,8 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
+         brew install clang-format
+         clang-format --version 
          Today=111
          echo $Today
          echo '${{ env.Today }}'
