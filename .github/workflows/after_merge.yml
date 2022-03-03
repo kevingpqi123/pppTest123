@@ -28,12 +28,11 @@ jobs:
         with:
           node-version: '16'
       - run: npm install -g depsync > /dev/null
-      - uses: seanmiddleditch/gha-setup-ninja@master
-      - run: |
-         mkdir build
-         cd build
-         cmake -G Ninja ..
-      - run: cmake --build build
+      - name: Setup Ninja
+        uses: ashutoshvarma/setup-ninja@master
+        with:
+          # ninja version to download. Default: 1.10.0
+          version: 1.10.0     
       - name: Environment
         run: |
          ninja --version
