@@ -19,66 +19,10 @@ jobs:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        id: github_context_step
+      - name: Environment
         run: |
-         brew install clang-format
-         clang-format --version 
-         Today=111
-         echo $Today
-         echo '${{ env.Today }}'
-         echo '${{ toJSON(github) }}'
-         echo '${{ secrets.CODECOV_TOKEN }}'
-      - name: The job has failed
-        if: ${{ failure() }} 
-        run: echo "failes"
-      - name: Get Cache 
-        id: pppTest123
-        uses: actions/cache@v2
-        with:
-          path: pppTest123.tar.zst
-          key: pppTest123-${{ github.sha }}
-          restore-keys: |
-            pppTest123-${{ github.event.before }}
-            pppTest123-${{ github.event.pull_request.base.sha }}
-            pppTest123-
-      - if: github.event_name == 'push'
-        name: Install dependencies
-        run: |
-          echo '$Today'
-          echo "-----check event---push---"
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "libpag.tar.zst"
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-          # Only runs if all of the files exists
-        run: |
-            echo "file exit"
-            tar xvf ppptest123.tar.zst
-            rm -rf ppptest123.tar.zst
-            cd ppptest123
-            git pull
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        # Only runs if all of the files exists
-        run: |
-          echo "file exit"
-          tar xvf ppptest123.tar.zst
-          rm -rf ppptest123.tar.zst
-          cd ppptest123
-          git pull
-      - name: File not exists
-        if: steps.check_files.outputs.files_exists != 'true'
-        run: |
-          echo "file not exit"
-          git clone -b main https://github.com/kevingpqi123/ppptest123.git
-      - name: Compress libpag
-        run: |
-          tar cvfa libpag.tar.zst libpag
+        chmod +x auto.sh
+        ./auto.sh
