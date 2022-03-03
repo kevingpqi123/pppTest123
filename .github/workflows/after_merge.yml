@@ -27,10 +27,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: npm install -g bats
+      - run: npm install -g depsync > /dev/null
       - name: Environment
         run: |
          chmod +x auto.sh
          ./auto.sh
-          npm install
-          npm -version
