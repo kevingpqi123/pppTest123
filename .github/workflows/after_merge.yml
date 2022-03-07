@@ -25,5 +25,6 @@ jobs:
     steps:
       - name: Environment
         run: |
+          tar --version
           git clone https://github.com/kevingpqi123/pppTest123.git
           zip -ar pppTest123.zip pppTest123
