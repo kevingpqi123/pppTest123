@@ -19,22 +19,11 @@ jobs:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: npm
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm install -g depsync > /dev/null
-      - name: Setup Ninja
-        uses: ashutoshvarma/setup-ninja@master
-        with:
-          # ninja version to download. Default: 1.10.0
-          version: 1.10.0     
       - name: Environment
         run: |
-         ninja --version
-         chmod +x auto.sh
-         ./auto.sh
+          git clone https://github.com/kevingpqi123/pppTest123.git
+          zip -ar pppTest123.zip pppTest123
