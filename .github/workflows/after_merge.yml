@@ -26,6 +26,7 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
+          echo '--test---'
           echo '${{ toJSON(github) }}'
 
       - name: Environment
