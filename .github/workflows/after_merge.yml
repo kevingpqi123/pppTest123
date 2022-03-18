@@ -48,7 +48,8 @@ jobs:
             /usr/local/bin/depsync
             /usr/local/Cellar/gcovr
             /usr/local/bin/gcovr
-          key: libpag1-environment-20220208 
+            /dev/null
+          key: libpag1-environment-20220209
       - name: Test
         run: |
           chmod +x test.sh
