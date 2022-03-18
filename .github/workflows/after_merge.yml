@@ -30,8 +30,25 @@ jobs:
           echo '--test-00o--'
           echo '${{ toJSON(github) }}'
 
-      - name: Environment
+      - uses: actions/checkout@v2
+ 
+      - name: Get environment cache
+        id: cache-environment
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/local/Cellar/ninja
+            /usr/local/bin/ninja
+            /usr/local/Cellar/node
+            /usr/local/bin/node
+            /usr/local/Cellar/emscripten
+            /usr/local/bin/emscripten
+            /usr/local/Cellar/yasm
+            /usr/local/bin/yasm
+            /usr/local/Cellar/depsync
+            /usr/local/bin/depsync
+          key: libpag-environment-20220208 
+      - name: Test
         run: |
-          tar --version
-          git clone https://github.com/kevingpqi123/pppTest123.git
-          tar -czvf pppTest123.tar.gz pppTest123
+          chmod +x test.sh
+          ./test.sh          
