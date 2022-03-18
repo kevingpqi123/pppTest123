@@ -26,7 +26,7 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
-          echo '--test-00o--'
+          echo '--test-001--'
           echo '${{ toJSON(github) }}'
 
       - uses: actions/checkout@v2
