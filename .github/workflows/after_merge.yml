@@ -46,7 +46,9 @@ jobs:
             /usr/local/bin/yasm
             /usr/local/Cellar/depsync
             /usr/local/bin/depsync
-          key: libpag-environment-20220208 
+            /usr/local/Cellar/gcovr
+            /usr/local/bin/gcovr
+          key: libpag1-environment-20220208 
       - name: Test
         run: |
           chmod +x test.sh
