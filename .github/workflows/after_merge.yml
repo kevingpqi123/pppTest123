@@ -27,6 +27,5 @@ jobs:
         id: github_context_step
         run: |
           echo '--test-002--'
-          brew search clang-format
-          brew install clang-format
+          pip3 install clang-format
           clang-format --version
