@@ -26,7 +26,6 @@ jobs:
       - name: Dump GitHub context
         id: github_context_step
         run: |
-          echo '--test-003--'
-          brew search clang-format
-          brew install clang-format
+          echo '--test-004--'
+          pip3 install clang-format==14
           clang-format --version
