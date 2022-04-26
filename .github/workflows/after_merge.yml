@@ -19,13 +19,13 @@ jobs:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: macos-latest
+    runs-on: macos-10.15
     environment: npm
 
     steps:
       - name: Dump GitHub context
         id: github_context_step
         run: |
-          echo '--test-002--'
+          echo '--test-003--'
           pip3 install clang-format
           clang-format --version
